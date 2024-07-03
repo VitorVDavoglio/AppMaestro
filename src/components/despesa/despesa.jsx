@@ -10,7 +10,7 @@ function Despesa(props){
     return <TouchableOpacity onPress={() => props.onClick(0)}>
         <View style={styles.despesa}>
             <View style={styles.containerIcon}>
-                <Image style={styles.despesaIcon} source={props.icon}/>
+                <Image style={styles.despesaIcon} source={{url: "https://drive.google.com/file/d/1o4_4bYBVp7ryv0o9i3Zfs3zsrbxDb5kK/view?usp=drive_link"}}/>
             </View>
 
             <View style={styles.containerCategoria}>
