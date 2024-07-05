@@ -11,4 +11,15 @@ function Listar(request, response){
     });
 }
 
-export default { Listar };
+function ListarDespesas(request, response){
+
+    modelDespesas.ListarDespesas(function(err, result){
+        if(err){
+            response.status(500).send(err);
+        } else {
+            response.status(200).send(result);
+        }
+    });
+}
+
+export default { Listar, ListarDespesas };

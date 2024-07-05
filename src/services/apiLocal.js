@@ -5,9 +5,9 @@ import axios from "axios";
 // const authusuario = process.env.USUARIO;
 // const authsenha = process.env.SENHA;
 
-const URL = "http://54.233.6.56:3001/";
+const URL = "http://192.168.15.9:3004/";
 
-const api = axios.create({
+const apiLocal = axios.create({
     baseURL: URL,
     auth: {
         username: "admin",
@@ -15,4 +15,4 @@ const api = axios.create({
     }
 })
 
-export default api;
+export default apiLocal;

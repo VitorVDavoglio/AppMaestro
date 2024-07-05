@@ -2,7 +2,9 @@ import {styles} from "./cad-despesa.style.js";
 import icons from "../../../../constants/icons.js";
 import { View, Text, Image, TextInput, TouchableOpacity } from "react-native"
 import {Picker} from '@react-native-picker/picker';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import apiLocal from "../../../../services/apiLocal.js";
 
 function CadDespesa(props){
 
@@ -10,6 +12,23 @@ function CadDespesa(props){
     const [valor, setValor] = useState("");
     const [descricao, setDescricao] = useState("");
     const [categoria, setCategoria] = useState("");
+    const [categoriaBanco, setCategoriaBanco] = useState([]);
+
+    function ListarCategorias(){
+        //Simulando o acesso a API
+        apiLocal.get("listar/categorias/despesas")
+        .then((resp) => {
+            setCategoriaBanco(resp.data);
+        })
+        .catch((err) => {
+            alert("Erro ao carregar os dados" + err);
+        })
+
+    }
+
+    useEffect(()=> {
+        ListarCategorias();
+    }, [])
 
 
     function handleSalvar(){
@@ -39,15 +58,14 @@ function CadDespesa(props){
         <View style={styles.containerField}>
             <Text style={styles.inputLabel}>Categoria</Text>
             <View style={styles.inputPicker}>
-                <Picker selectedValue={categoria} onValueChange={(itemValue, itemIndex) => {
+                <Picker selectedValue={categoria} onValueChange={(itemValue) => {
                     setCategoria(itemValue);
                 }}>
-                    <Picker.Item label="Carro" value="Carro" />
-                    <Picker.Item label="Casa" value="Casa" />
-                    <Picker.Item label="Lazer" value="Lazer" />
-                    <Picker.Item label="Mercado" value="Mercado" />
-                    <Picker.Item label="Educação" value="Educação" />
-                    <Picker.Item label="Viagem" value="Viagem" />
+                    {
+                        categoriaBanco.map((dados) => {
+                            return <Picker.Item label={dados.categoria} value={dados.id} />
+                        })
+                    }
                 </Picker>
             </View>
         </View>   

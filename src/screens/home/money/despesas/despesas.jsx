@@ -17,9 +17,9 @@ function Despesas(props){
     
 
     
-    function ListarDespesas(){
+    async function ListarDespesas(){
         //Simulando o acesso a API
-        api.get("listar/despesas")
+        await api.get("listar/despesas")
         .then((resp) => {
             setDespesas(resp.data);
         })
@@ -28,8 +28,8 @@ function Despesas(props){
         })
 
         let soma = 0;
-        for (var i=0; i <dados.length; i++){
-            soma = soma + dados[i].valor;
+        for (var i=0; i <despesas.length; i++){
+            soma = soma + despesas[i].valor;
         }
         setTotal(soma);
     }

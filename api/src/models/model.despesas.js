@@ -13,6 +13,19 @@ function Listar(callback){
             callback(undefined, result);
         }
     });
+};
+
+function ListarDespesas(callback){
+
+    let ssql = `SELECT id, categoria FROM financategoria;`;
+
+    db.query(ssql, function(err, result){
+        if(err){
+            callback(err, []);
+        } else {
+            callback(undefined, result);
+        }
+    });
 }
 
-export default { Listar };
+export default { Listar, ListarDespesas,  };
