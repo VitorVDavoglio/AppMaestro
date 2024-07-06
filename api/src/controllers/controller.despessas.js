@@ -11,6 +11,17 @@ function Listar(request, response){
     });
 }
 
+function ListarGanhos(request, response){
+
+    modelDespesas.ListarGanhos(function(err, result){
+        if(err){
+            response.status(500).send(err);
+        } else {
+            response.status(200).send(result);
+        }
+    });
+}
+
 function ListarDespesas(request, response){
 
     modelDespesas.ListarDespesas(function(err, result){
@@ -22,4 +33,39 @@ function ListarDespesas(request, response){
     });
 }
 
-export default { Listar, ListarDespesas };
+function Inserir(request, response){
+
+    modelDespesas.Inserir(request.body, function(err, result){
+        if(err){
+            response.status(500).send(err);
+        } else{
+            response.status(201).send(result);
+        }
+    });
+}
+
+function Editar(request, response){
+
+    modelDespesas.Editar(request.params.iddespesa, request.body, function(err, result){
+        if(err){
+            response.status(500).send(err);
+        } else{
+            response.status(200).send(result);
+        }
+    });
+
+}
+
+function Excluir(request, response){
+
+    modelDespesas.Excluir(request.params.iddespesa, request.body, function(err, result){
+        if(err){
+            response.status(500).send(err);
+        } else{
+            response.status(200).send(result);
+        }
+    });
+
+}
+
+export default { Listar, ListarGanhos, ListarDespesas, Inserir, Editar, Excluir, };
