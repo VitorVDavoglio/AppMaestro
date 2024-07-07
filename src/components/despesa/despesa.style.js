@@ -6,7 +6,7 @@ export const styles = {
         backgroundColor: COLORS.gray,
         padding: 12,
         borderRadius: 10,
-        marginTop: 10,
+        marginTop: 7,
         flexDirection: "row",
         justifyContent: "space-between",
     },

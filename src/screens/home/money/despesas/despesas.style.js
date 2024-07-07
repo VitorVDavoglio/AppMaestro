@@ -37,7 +37,6 @@ export const styles = {
     },
 
     imgTitulo: {
-        backgroundColor: COLORS.white,
         width: 60,
         height: 60,
         borderRadius: 10,
@@ -53,5 +52,12 @@ export const styles = {
 
     scrollDiv: {
         height: '100%',
+    },
+
+    textData: {
+        paddingTop: 10,
+        color: COLORS.black,
+        fontSize: FONT_SIZE.md,
+        fontWeight: "bold",
     },
 }
