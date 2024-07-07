@@ -20,18 +20,17 @@ function Despesas(props){
     const [anoAtual, SetAnoAtual] = useState(0)
     
     
-    function OpenDespesa(id){
-        props.navigation.navigate("EditDespesas", {detail: {
-            operacao: "novaDespesa",
-            iddespesa: id
-        }});
+    function OpenDespesa(){
+        props.navigation.navigate("EditDespesas", {
+            operacao: "Nova"
+        });
     }
 
-    function EditarDespesa(id){
-        props.navigation.navigate("EditDespesas", {detail: {
-            operacao: "EditarDespesa"
-        }});
-        Alert.alert(id)
+    const EditarDespesa = (id) => {
+        props.navigation.navigate("EditDespesas", {
+            operacao: "Editar",
+            iddespesa: id
+        });
     }
     
     useEffect(()=> {
@@ -50,7 +49,7 @@ function Despesas(props){
         setTotal(0);
         SetSelect("D");
         //Simulando o acesso a API
-        await api.get("listar/despesas")
+        await api.get("/despesas/listar")
         .then((resp) => {
             setDespesas(resp.data);
             resp.data.map(dado => {
@@ -66,7 +65,7 @@ function Despesas(props){
         setTotal(0);
         SetSelect("G");
         //Simulando o acesso a API
-        await apiLocal.get("despesas/listar/ganhos")
+        await api.get("despesas/listar/ganhos")
         .then((resp) => {
             setDespesas(resp.data);
             resp.data.map(dado => {
@@ -113,17 +112,6 @@ function Despesas(props){
         setDataDespesas(diasArmazenados);
     }
 
-    useEffect(() => {
-        console.log(dataDespesas);
-    },[dataDespesas])
-
-
-
-
-
-
-    
-
     return <View style={styles.container}>
         <View style={styles.secaoCima}>
             <View style={styles.textTitulo}>
@@ -167,26 +155,27 @@ function Despesas(props){
             
             <ScrollView style={styles.scrollDiv}>
                 {
-                dataDespesas.map((data) => {
-                    const despesasDia = despesas.filter(despesa => despesa.dia === data); // Filtra despesas por dia
+                    dataDespesas.map((data) => {
+                        const despesasDia = despesas.filter(despesa => despesa.dia === data); // Filtra despesas por dia
 
-                    return (
-                    <>
-                        <Text style={styles.textData}>{data}/07/2024</Text>
-                        {despesasDia.map((despesa) => ( // Mapeamento das despesas do dia
-                        <Despesa
-                            key={despesa.iddespesa}
-                            id={despesa.iddespesa}
-                            icon={despesa.icone}
-                            categoria={despesa.categoria}
-                            descricao={despesa.descricao}
-                            valor={despesa.valor}
-                            onClick={EditarDespesa}
-                        />
-                        ))}
-                    </>
-                    );
-                })
+                        return (
+                        <>
+                            
+                            <Text style={styles.textData} key={data}>{data}/07/2024</Text>
+                            {despesasDia.map((despesa) => ( // Mapeamento das despesas do dia
+                            <Despesa
+                                key={despesa.iddespesa}
+                                id={despesa.iddespesa}
+                                icon={despesa.icone}
+                                categoria={despesa.categoria}
+                                descricao={despesa.descricao}
+                                valor={despesa.valor}
+                                onClick={EditarDespesa}
+                            />
+                            ))}
+                        </>
+                        );
+                    })
                 }
             </ScrollView>
             

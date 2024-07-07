@@ -12,6 +12,10 @@ import moneyViagem from "../assets/money-viagem.png";
 import moneyEntrada from "../assets/money-entrada.png";
 import moneySaida from "../assets/money-saida.png";
 import moneyDetalhe from "../assets/money-detalhe.png";
+import moneyAcademia from "../assets/money-academia.png";
+import moneySalario from "../assets/money-salario.png";
+import moneyMesada from "../assets/money-mesada.png";
+import moneyRepasse from "../assets/money-repasse.png";
 
 
 
@@ -20,7 +24,7 @@ export default {
     logo,
     //Página Money
     moneyMercado, moneyTreinamento, moneyViagem, moneyEntrada, moneySaida, moneyDetalhe,
-    moneyAdd, moneyDelete, moneyCarro, moneyCasa, moneyCifrao, moneyLazer, 
-
+    moneyAdd, moneyDelete, moneyCarro, moneyCasa, moneyCifrao, moneyLazer, moneyAcademia,
+    moneySalario, moneyMesada, moneyRepasse
     //
 }

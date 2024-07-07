@@ -33,6 +33,18 @@ function ListarDespesas(request, response){
     });
 }
 
+function ListarId(request, response){
+
+    modelDespesas.ListarId(request.params.iddespesa, function(err, result){
+        if(err){
+            response.status(500).send(err);
+        } else{
+            response.status(200).send(result);
+        }
+    });
+
+}
+
 function Inserir(request, response){
 
     modelDespesas.Inserir(request.body, function(err, result){
@@ -68,4 +80,4 @@ function Excluir(request, response){
 
 }
 
-export default { Listar, ListarGanhos, ListarDespesas, Inserir, Editar, Excluir, };
+export default { Listar, ListarGanhos, ListarDespesas, ListarId, Inserir, Editar, Excluir, };

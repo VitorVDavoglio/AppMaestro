@@ -30,6 +30,21 @@ function ListarGanhos(callback){
     });
 };
 
+function ListarId(iddespesa, callback){
+
+    let ssql = `SELECT finandespesas.iddespesa,financategoria.categoria,finandespesas.idcategoria,finandespesas.valor,finandespesas.dia,finandespesas.mes,finandespesas.ano,finandespesas.descricao,finandespesas.tipo FROM finandespesas 
+                INNER JOIN financategoria ON finandespesas.idcategoria=financategoria.id 
+                WHERE iddespesa = ? `;
+    
+    db.query(ssql, [iddespesa], function(err, result){
+        if (err){
+            callback(err, []);
+        } else {
+            callback(undefined, result[0]);
+        }
+    });
+}
+
 function ListarDespesas(callback){
 
     let ssql = `SELECT id, categoria FROM financategoria;`;
@@ -92,4 +107,4 @@ function Excluir(iddespesa, json_desp,callback){
 
 
 
-export default { Listar,ListarGanhos, ListarDespesas, Inserir, Editar, Excluir, };
+export default { Listar, ListarGanhos, ListarDespesas, ListarId, Inserir, Editar, Excluir, };
