@@ -4,9 +4,6 @@ import { View, Text, Image, TouchableOpacity } from "react-native"
 import { useEffect, useState } from "react";
 
 
-
-
-
 function Despesa(props){
 
     const [iconeEscolhido, setIconeEscolhido] = useState();
@@ -52,9 +49,6 @@ function Despesa(props){
                 break;
         }
     }
-
-
-
 
 
     return <TouchableOpacity onPress={() => props.onClick(String(props.id))}>
